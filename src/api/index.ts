@@ -66,7 +66,7 @@ api.post(
           res.status(400).json({ error: 'NO_PIXEL' });
           return;
         }
-        await tilesProvider.edit(body.payload);
+        await tilesProvider.edit(body.payload, user_id);
         ws.clients.forEach((c) => {
           c.send(JSON.stringify(body));
         });

@@ -22,13 +22,14 @@ class TileService {
     return tileCache;
   };
 
-  edit = async (tile: Tile) => {
+  edit = async (tile: Tile, userId: number) => {
     try {
       await this.tileRepository.update({ number: tile.number }, tile);
       const newTileHistory = this.tileHistoryRepository.create({
         tileNumber: tile.number,
         newColor: tile.color,
         time: new Date(),
+        userId: userId,
       });
       await this.tileHistoryRepository.save(newTileHistory);
       tileCache[tile.number] = tile;

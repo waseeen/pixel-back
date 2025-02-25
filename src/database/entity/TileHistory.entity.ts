@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { Color } from '../../types/Colors';
+import { UserEntity } from './User.entity';
 
 @Entity('tileHistory')
 export class TileHistoryEntity {
@@ -14,4 +15,7 @@ export class TileHistoryEntity {
 
   @Column()
   time: Date;
+
+  @OneToMany(() => UserEntity, (user) => user.id)
+  userId: number;
 }
