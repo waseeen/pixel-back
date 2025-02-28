@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import expressAsyncHandler from 'express-async-handler';
+import compression from 'compression';
 import { tilesProvider, ws } from '..';
 import { Message, MessageType } from '../types/Message';
 import login from './login';
@@ -13,6 +14,7 @@ const api = Router();
 const userRepository = db.getRepository(UserEntity);
 api.get(
   '/',
+  compression(),
   expressAsyncHandler(async (_res, res) => {
     try {
       const response: Message<MessageType.CONNECT> = {

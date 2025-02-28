@@ -29,7 +29,7 @@ app.use('/', express.json(), api);
 dbInit().then(() => {
   tilesProvider.initGet();
   ws.on('connection', async (c) => {
-    c.send(JSON.stringify(tilesProvider.get()));
+    c.send('{}');
   });
 
   server.listen(process.env.PORT, () => {

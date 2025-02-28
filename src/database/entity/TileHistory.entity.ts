@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
 import { Color } from '../../types/Colors';
 import { UserEntity } from './User.entity';
 
@@ -16,6 +16,7 @@ export class TileHistoryEntity {
   @Column()
   time: Date;
 
-  @OneToMany(() => UserEntity, (user) => user.id)
-  userId: number;
+  @ManyToOne(() => UserEntity, (user) => user.id)
+  // @JoinColumn()
+  user: UserEntity;
 }
